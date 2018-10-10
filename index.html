@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" type="text/css" href="style.css" />
+	<script src="vue.js"></script>
+	<script src="https://unpkg.com/vue-cookies@1.5.7/vue-cookies.js"></script>
+	<title>Nilai Remi</title>
+</head>
+<body>
+	
+	<div id="remi">
+		
+		<header id="header">
+			
+			<div class="row header-row container">
+				<h1>Skor Remi RW 12</h1>
+				<div class="header-row-right">
+					<a v-on:click="clearAll" class="btn btn-clear">HAPUS</a>
+				</div>
+			</div>		
+			
+			<div class="row top-row container">
+				<div class="col name-col name-col-1"><input type="text" placeholder="A" v-model.number="namas.nm1" v-on:keyup="storeNama"></div>
+				<div class="col name-col name-col-2"><input type="text" placeholder="B" v-model.number="namas.nm2" v-on:keyup="storeNama"></div>
+				<div class="col name-col name-col-3"><input type="text" placeholder="C" v-model.number="namas.nm3" v-on:keyup="storeNama"></div>
+				<div class="col name-col name-col-4"><input type="text" placeholder="D" v-model.number="namas.nm4" v-on:keyup="storeNama"></div>
+			</div>
+
+		</header>		
+
+		<div class="score-wrap container clearfix">
+		
+			<div class="row score-row" v-for="(score, index) in scores">
+				<div class="col sc-col sc-col-1" v-bind:class="colClass(index, 1)"><input type="number" v-model.number="score.sc1" v-on:keyup="storeScore" placeholder="0"></div>
+				<div class="col sc-col sc-col-2" v-bind:class="colClass(index, 2)"><input type="number" v-model.number="score.sc2" v-on:keyup="storeScore" placeholder="0"></div>
+				<div class="col sc-col sc-col-3" v-bind:class="colClass(index, 3)"><input type="number" v-model.number="score.sc3" v-on:keyup="storeScore" placeholder="0"></div>
+				<div class="col sc-col sc-col-4" v-bind:class="colClass(index, 4)"><input type="number" v-model.number="score.sc4" v-on:keyup="storeScore" placeholder="0"></div>
+			</div>		
+			
+		</div>
+		
+		<footer id="footer">
+		<div class="container">
+			<div class="add-row">
+				<button @click="addRow()"><span>+</span> Tambah Baris</button>
+			</div>
+			<div class="row results-row">
+				<div class="col res-col res-col-1" v-bind:class="resClass(total1)">{{ total1 }}</div>
+				<div class="col res-col res-col-2" v-bind:class="resClass(total2)">{{ total2 }}</div>
+				<div class="col res-col res-col-3" v-bind:class="resClass(total3)">{{ total3 }}</div>
+				<div class="col res-col res-col-4" v-bind:class="resClass(total4)">{{ total4 }}</div>
+			</div>
+		</div>
+		</footer>
+		
+	</div>
+
+	<script src="vue-app.js"></script>
+</body>
+</html>
